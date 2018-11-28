@@ -1,0 +1,163 @@
+body {
+	background-color: #fafafa;
+}
+/*header*/
+.header {
+	background-image: url('../images/header-bg.gif');
+	background-repeat: repeat-x;
+	margin-bottom: 20px;
+}
+
+.nav-admin {
+	margin-top: 20px !important;
+	padding: 0;
+}
+
+.header-logo {
+	margin: 80px 0 20px 0;
+}
+
+/* Content */
+.content {
+	margin-top: 70px;
+	min-height: 500px; 
+}
+
+.menu-top {
+	padding-top: 20px;
+	min-height: 130px;
+}
+.login-box {
+	padding: 20px 20px;
+	background: #eff4ff !important;
+	box-shadow: 2px 2px 2px #CDCDD0;
+
+}
+
+.card-box {	
+}
+.edit {
+	border:solid 1 px black; 
+	width:11px; 
+	height:10px; 
+	position:absolute; 
+	background-color:#F00; 
+	margin-left:500px;
+}
+.foto {
+	padding-top: 50px;
+}
+
+
+.cetak-guru {
+	width:1181px;
+	height:1771px
+
+}
+.foto-guru {
+	 -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform: rotate(90deg);
+    margin-left: 120px;
+    margin-top: 10px;
+}
+
+.foto-guru img {
+
+    border: solid 4px #000;
+}
+.card{
+	padding-top:120px;
+	margin-top: 10px;
+	height: 322px;
+	background-repeat: no-repeat;
+}
+.card-guru{
+	width: 510px !important;
+	padding-top:10px;
+	margin-top: 10px;
+	height: 322px;
+	background-repeat: no-repeat;
+}
+
+.text-vertical-jabatan {
+	transform: rotate(90deg);
+	transform-origin: left top 0;
+	float: left;
+	margin-left: 25px;
+	margin-top: -10px;
+
+}
+
+.text-vertical-jabatan p{
+	width: 322px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.text-vertical-nip {
+	transform: rotate(90deg);
+	transform-origin: left top 0;
+	float: left;
+	margin-left: 45px;
+	margin-top: -35px;
+
+}
+
+.text-vertical-nip p{
+	width: 322px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.text-vertical-nama {
+	transform: rotate(90deg);
+	transform-origin: left top 0;
+	float: left;
+	margin-left: 75px;
+	margin-top: -35px;
+
+}
+
+.text-vertical-nama p{
+	width: 322px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14pt;
+}
+
+.text-vertical2 {
+	writing-mode:tb-rl;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform: rotate(90deg);
+    white-space:nowrap;
+    display:block;
+    bottom:0;
+    width:100px;
+    height:20px;
+}
+
+
+/*Footer*/
+.celcius {
+    color: #b00;
+}
+.tech {
+    color: #000;
+}
+
+#main-footer {
+	margin-top:20px;
+   padding: 30px 0 30px;
+	font-family:OpenSans;
+}
+#main-footer a, #main-footer a:hover {
+    color: #fff;
+}
