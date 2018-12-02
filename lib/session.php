@@ -13,7 +13,8 @@ function getFlash($key = '') {
     if ($key === '') {
         $flashes = $_SESSION['ct_flash'];
         $_SESSION['ct_flash'] = array();
-    } if (isset($_SESSION['ct_flash'][$key])) {
+    } 
+    if (isset($_SESSION['ct_flash'][$key])) {
         $flashes = $_SESSION['ct_flash'][$key];
         unset($_SESSION['ct_flash'][$key]);
     }
