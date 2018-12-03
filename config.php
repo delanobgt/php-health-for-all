@@ -1,13 +1,8 @@
 <?php
-    session_start();
-    $host = 'http://localhost:80/universitas/mvc';
-    $rootDirectory = '/opt/lampp/htdocs/universitas/mvc';
-    date_default_timezone_set('Asia/Jakarta');
-    $emailAdmin = 'admin@uph.edu';
+    require_once 'env.php';
 
-    $dbuser = 'root';
-    $dbpass = '';
-    $dbname = 'health_for_all';
+    session_start();
+    
     $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
@@ -17,13 +12,13 @@
 
     try {
         $pdo = new PDO('mysql:dbname='.$dbname, $dbuser, $dbpass, $options);
-        echo "Berhasil connect ke DB"
+        echo "Berhasil connect ke DB";
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 
-    $controllerDirectory = $host . '/web/';
-    $layoutDirectory = $rootDirectory . '/layout/';
-    $assetDirectory = $host . '/assets/';
-    $uploadDirectory = $rootDirectory . '/uploads/';
+    $controllerDirectory = $GLOBALS['host'].'/web/';
+    $layoutDirectory = $GLOBALS['rootDirectory'].'/layout/';
+    $assetDirectory = $GLOBALS['host'].'/assets/';
+    $uploadDirectory = $GLOBALS['rootDirectory'].'/uploads/';
 ?>
