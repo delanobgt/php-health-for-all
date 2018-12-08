@@ -1,4 +1,0 @@
-<Files ^(*.php|*.phps|*.js)>
-    order deny,allow
-    deny from all
-</Files>

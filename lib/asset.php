@@ -1,28 +1,25 @@
 <?php
-
-    require_once __DIR__.'/../config.php';
-
-    function asset($path) {
+    function assetPath($path) {
         return $GLOBALS['assetDirectory'].$path;
     }
 
     function css($path) {
-        return asset('css/'.$path);
+        return assetPath('css/'.$path);
     }
+
     function font($path) {
-        return asset('fonts/'.$path);
+        return assetPath('fonts/'.$path);
     }
 
     function files($path) {
-        return asset('files/'.$path);
+        return assetPath('files/'.$path);
     }
 
     function js($path) {
-        return asset('js/'.$path);
+        return assetPath('js/'.$path);
     }
 
     function img($path) {
-        return asset('images/'.$path);
+        return assetPath('images/'.$path);
     }
-
 ?>

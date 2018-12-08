@@ -1,103 +1,47 @@
 <?php
+    require_once __DIR__.'/../config.php';
 
-require_once __DIR__.'/../config.php';
+    function createDoctor($name, $age, $specialist, $gender) {
+        global $pdo;
+        $stmt = $pdo->prepare('INSERT INTO doctor(name, age, specialist, gender) VALUES (:name, :age, :specialist, :gender)');
+        $success = $stmt->execute(array(
+            'name' => $name,
+            'age' => $age,
+            'specialist' => $specialist,
+            'gender' => $gender,
+        ));
+        return $success ? $pdo->lastInsertId() : 0;
+    }
 
-function tambahInformasi($type, $title, $content) {
-    global $pdo;
+    function findAllDoctor() {
+        global $pdo;
+        $stmt = $pdo->prepare('SELECT * FROM doctor');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
-    $sth = $pdo->prepare('INSERT INTO informasi(type, title, content) VALUES (:type, :title, :content)');
+    function findDoctorById($id) {
+        global $pdo;
+        $stmt = $pdo->prepare('SELECT * FROM doctor WHERE id = :id');
+        $stmt->execute(array('id' => $id));
+        return $stmt->fetch();
+    }
 
-    return $sth->execute(array(
-        'type' => $type,
-        'title' => $title,
-        'content' => $content
-    ));
-}
+    function updateDoctorById($id, $name, $age, $specialist, $gender) {
+        global $pdo;
+        $stmt = $pdo->prepare('UPDATE doctor SET name = :name, age = :age, specialist = :specialist, gender = :gender WHERE id = :id');
+        return $stmt->execute(array(
+            'id' => $id,
+            'name' => $name,
+            'age' => $age,
+            'specialist' => $specialist,
+            'gender' => $gender
+        ));
+    }
 
-function editInformasiById($id, $content) {
-    global $pdo;
-
-    $sth = $pdo->prepare('UPDATE informasi SET content = :content, date_updated = NULL WHERE id = :id');
-
-    return $sth->execute(array(
-        'id' => $id,
-        'content' => $content
-    ));
-}
-
-function hapusInformasiById($id) {
-    global $pdo;
-
-    $sth = $pdo->prepare('DELETE FROM informasi WHERE id = :id');
-
-    return $sth->execute(array('id' => $id));
-}
-
-function findInformasiById($id) {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT * FROM informasi WHERE id = :id');
-    $sth->execute(array('id' => $id));
-
-    return $sth->fetch();
-}
-
-function findInformasiByTitle($title) {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT * FROM informasi WHERE title = :title');
-    $sth->execute(array('keterangan' => $title));
-
-    return $sth->fetch();
-}
-
-function findInformasiByType($type) {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT * FROM informasi WHERE type = :type ORDER BY id');
-    $sth->execute(array('type' => $type));
-
-    return $sth->fetchAll();
-}
-
-function findInformasiByQueryString($queryString) {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT * FROM informasi WHERE title LIKE :queryString OR content LIKE :queryString');
-    $sth->execute(array('queryString' => '%'.$queryString.'%'));
-
-    return $sth->fetchAll();
-}
-
-function findAllInformasi() {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT * FROM informasi');
-    $sth->execute();
-
-    return $sth->fetchAll();
-}
-
-function findBeritaTerbaru() {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT * FROM informasi WHERE type = "berita" ORDER BY id DESC LIMIT 0,3');
-    $sth->execute();
-
-    return $sth->fetchAll();
-}
-
-function findAllBeritaStatement() {
-global $pdo;
-return $pdo->prepare('SELECT * FROM informasi WHERE type = "berita" ORDER BY id DESC');
-}
-
-function findArtikelTerbaru() {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT * FROM informasi WHERE type = "artikel" ORDER BY id DESC LIMIT 0,3');
-    $sth->execute();
-
-    return $sth->fetchAll();
-}
+    function deleteDoctorById($id) {
+        global $pdo;
+        $stmt = $pdo->prepare('DELETE FROM doctor WHERE id = :id');
+        return $stmt->execute(array('id' => $id));
+    }
 ?>

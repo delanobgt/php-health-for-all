@@ -1,85 +1,37 @@
 <?php
+    require_once __DIR__.'/../lib/session.php';
+    require_once __DIR__.'/../config.php';
 
-require_once __DIR__.'/../config.php';
-require_once __DIR__.'/../lib/session.php';
-
-function ipLogin($username, $ip){
-    global $pdo;
-    $sth = $pdo->prepare('UPDATE user SET ip_login = :ip
-								WHERE username = :username');
-    return $sth->execute(array(
-        'username' => $username,
-        'ip' => $ip
-    ));
-}
-
-function findUserByUsername($username = null) {
-    global $pdo;
-
-    if (is_null($username)) {
-        $username = getUsername();
-    }
-    $sth = $pdo->prepare('
-        SELECT u.*, b.nama nama_bank, p.nama jenis_paket FROM user u
-	INNER JOIN paket p ON p.id = u.id_paket
-        LEFT JOIN bank b ON u.id_bank = b.id
-        WHERE u.username = :username AND u.id_pusat IS NULL
-    ');
-    $sth->execute(array('username' => $username));
-
-    return $sth->fetch();
-}
-
-function login($username, $password, $ip) {
-    if (strlen($username) > 0 && strlen($password) > 0) {
+    function loginUser($email, $password) {
         global $pdo;
-        $isAdmin = isAdmin($username);
-        $adminCondition = "";
-        if ($isAdmin) $adminCondition = " AND admin = 1";
-		$encryptPassword = sha1($password);
-        $sth = $pdo->prepare('SELECT id FROM user WHERE username = :user AND password = :password' . $adminCondition);
+        $sth = $pdo->prepare('SELECT * FROM user WHERE email = :email AND password = :password');
         $sth->execute(array(
-            'user' => $username,
-            'password' => $encryptPassword
+            'email' => $email,
+            'password' => sha1($password)
         ));
-        ipLogin($username, $ip);
         return $sth->rowCount() > 0;
     }
-    return false;
-}
 
-function isAdmin($username) {
-    global $pdo;
+    function createUser($username, $email, $password, $role, $detail_id) {
+        global $pdo;
+        $sth = $pdo->prepare('INSERT INTO user(username, email, password, role, detail_id) VALUES(:username, :email, :password, :role, :detail_id)');
+        return $sth->execute(array(
+            'username' => $username,
+            'email' => $email,
+            'password' => sha1($password),
+            'role' => $role,
+            'detail_id' => $detail_id
+        ));
+    }
 
-    $sth = $pdo->prepare('SELECT id FROM user WHERE username = :username AND admin = 1');
-    $sth->execute(array('username' => $username));
+    function findUserByUsername($username = null) {
+        global $pdo;
+        if (is_null($username)) {
+            $username = getUsername();
+        }
+        $sth = $pdo->prepare('SELECT * FROM user WHERE username = :username');
+        $sth->execute(array('username' => $username));
 
-    return $sth->rowCount() > 0;
-}
-
-function gantiPassword($passwordLama, $password) {
-    global $pdo;
-
-    $username = getUsername();
-    $user = findMemberByUsername($username);
-    if ($user->password != sha1($passwordLama)) return false;
-
-    $sth = $pdo->prepare('UPDATE user SET password = :password WHERE username = :username');
-
-    return $sth->execute(array(
-        'password' => sha1($password),
-        'username' => $username
-    ));
-}
-
-function getUsernameById($id) {
-    global $pdo;
-
-    $sth = $pdo->prepare('SELECT username FROM user WHERE id = :id');
-    $sth->execute(array('id' => $id));
-    $user = $sth->fetch();
-
-    return $user->username;
-}
-
+        return $sth->fetch();
+    }
 ?>

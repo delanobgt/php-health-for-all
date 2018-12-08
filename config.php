@@ -12,7 +12,7 @@
 
     try {
         $pdo = new PDO('mysql:dbname='.$dbname, $dbuser, $dbpass, $options);
-        echo "Berhasil connect ke DB";
+        // echo "Berhasil connect ke DB";
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

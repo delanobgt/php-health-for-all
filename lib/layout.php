@@ -1,5 +1,4 @@
 <?php
-
     require_once __DIR__.'/../config.php';
 
     function render($layout, $parameters = array()) {
@@ -9,5 +8,4 @@
 
         include $GLOBALS['layoutDirectory'].$layout;
     }
-
 ?>

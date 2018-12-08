@@ -1,5 +1,4 @@
 <?php
-
     function addFlash($key, $val) {
         if ($key == 'error') $key = 'danger';
         if (!isset($_SESSION['ct_flash'][$key])) {
@@ -24,11 +23,12 @@
 
     function hasFlash($key) {
         return isset($_SESSION['ct_flash'][$key]); 
-    };
+    }
 
+    
     function hasSession($key) {
         return isset($_SESSION['ct'][$key]); 
-    };
+    }
 
     function setSession($key, $value) {
         $_SESSION['ct'][$key] = $value;
@@ -37,5 +37,4 @@
     function getSession($key, $default = '') {
         return hasSession($key) ? $_SESSION['ct'][$key] : $default;
     }
-
 ?>
