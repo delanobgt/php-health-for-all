@@ -18,8 +18,6 @@
 <body>
 
     <header>
-        <a href="index.html" class="header-brand">Health For All | </a>
-
         <nav>
             <ul>
                 <li><a href="contact.html">Customer Help</a></li>
@@ -33,14 +31,20 @@
 
             <h1 class="form-title">Sign Up (Doctor)</h1>
 
-            <input type="text" name="name" placeholder="Name">
-            <input type="text" name="age" placeholder="Age">
-            <input type="text" name="specialist" placeholder="Specalist">
-            <input type="text" name="gender" placeholder="Gender">
-            <input type="text" name="username" placeholder="Username">
             <input type="email" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="confirm_password" placeholder="Confirm Password">
+
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="age" placeholder="Age">
+            <input type="text" name="specialist" placeholder="Specialist">
+            <select name="gender">
+                <option value="Select your gender" disabled selected>Select your gender</option>
+                <option value="F">Female</option>
+                <option value="M">Male</option>
+            </select>
+            <br/><br/>
+            
             <input type="submit" name="signup" value="Sign Up">
 
             <h1 class="form-footer"> If you already sign up, <a href="<?php echo path('front/auth_doctor.php?page=login') ?>"> login here.</a> </h1>

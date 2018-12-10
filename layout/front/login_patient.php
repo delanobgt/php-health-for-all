@@ -18,8 +18,6 @@
 <body>
 
     <header>
-        <a href="index.html" class="header-brand">Health For All | </a>
-
         <nav>
             <ul>
                 <li><a href="contact.html">Customer Help</a></li>
@@ -33,9 +31,9 @@
 
             <h1 class="form-title">Login (Patient)</h1>
 
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <input type="button" value="Login">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="Login">
 
             <h1 class="form-footer"> If you are new patient, <a href="<?php echo path('front/auth_patient.php?page=signup') ?>"> signup here.</a> </h1>
         </form>

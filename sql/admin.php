@@ -1,15 +1,15 @@
 <?php
     require_once __DIR__.'/../config.php';
 
-    function createAdmin($name, $age, $gender) {
+    function createAdmin($name) {
         global $pdo;
-        $stmt = $pdo->prepare('INSERT INTO admin(name, age, gender) VALUES (:name, :age :gender)');
+        $stmt = $pdo->prepare('INSERT INTO admin(name) VALUES(:name)');
         $success = $stmt->execute(array(
             'name' => $name,
             'age' => $age,
             'gender' => $gender
         ));
-        return $success ? $this->pdo->lastInsertId() : 0;
+        return $success ? $pdo->lastInsertId() : 0;
     }
 
     function findAllAdmin() {
@@ -26,9 +26,9 @@
         return $stmt->fetch();
     }
 
-    function updateAdminById($id, $name, $age, $specialist, $gender) {
+    function updateAdminById($id, $name) {
         global $pdo;
-        $stmt = $pdo->prepare('UPDATE admin SET name = :name, age = :age, gender = :gender WHERE id = :id');
+        $stmt = $pdo->prepare('UPDATE admin SET name = :name WHERE id = :id');
         return $stmt->execute(array(
             'id' => $id,
             'name' => $name,

@@ -12,9 +12,9 @@
         return getSession('role');
     }
 
-    function getUsername($default = '') {
-        return isAuthenticated() ? getSession('username') : $default;
-    }
+    // function getName($default = '') {
+    //     return isAuthenticated() ? getSession('username') : $default;
+    // }
 
     function logout() {
         unset($_SESSION['ct']);
@@ -25,8 +25,7 @@
     function authenticate($email, $password) {
         $isLoggedIn = loginUser($email, $password);
         if ($isLoggedIn) {
-            setSession('username', $email);
-            // setSession('role', isAdmin($email) ? 'admin' : 'member');
+            setSession('email', $email);
             return true;
         }
         return false;

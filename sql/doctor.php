@@ -3,7 +3,7 @@
 
     function createDoctor($name, $age, $specialist, $gender) {
         global $pdo;
-        $stmt = $pdo->prepare('INSERT INTO doctor(name, age, specialist, gender) VALUES (:name, :age, :specialist, :gender)');
+        $stmt = $pdo->prepare('INSERT INTO doctor(name, age, specialist, gender) VALUES(:name, :age, :specialist, :gender)');
         $success = $stmt->execute(array(
             'name' => $name,
             'age' => $age,
@@ -27,15 +27,16 @@
         return $stmt->fetch();
     }
 
-    function updateDoctorById($id, $name, $age, $specialist, $gender) {
+    function updateDoctorById($id, $name, $age, $specialist, $gender, $description='') {
         global $pdo;
-        $stmt = $pdo->prepare('UPDATE doctor SET name = :name, age = :age, specialist = :specialist, gender = :gender WHERE id = :id');
+        $stmt = $pdo->prepare('UPDATE doctor SET name = :name, age = :age, specialist = :specialist, gender = :gender, description = :description WHERE id = :id');
         return $stmt->execute(array(
             'id' => $id,
             'name' => $name,
             'age' => $age,
             'specialist' => $specialist,
-            'gender' => $gender
+            'gender' => $gender,
+            'description' => $description
         ));
     }
 

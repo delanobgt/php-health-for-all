@@ -6,4 +6,5 @@
     logout();
 
     redirect($GLOBALS['host']);
+    // redirect($_SERVER['HTTP_REFERER']);
 ?>

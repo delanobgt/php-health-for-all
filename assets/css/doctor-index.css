@@ -1,0 +1,195 @@
+*{
+    text-decoration: none;
+    padding: 0;
+    margin:0;
+}
+
+body{
+    background-color: lightgreen;
+}
+
+/*header*/
+header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: lightgreen;
+    width: 100%;
+    height: 50px;
+}
+
+header .header-brand{
+    font-family: 'Righteous', cursive;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    display: block;
+    text-align: left;
+    padding-top: 1em;
+    padding-left: 1.5em;
+}
+
+header nav ul{
+    display: block;
+    margin: 0 auto;
+    margin-top: -1.5em;
+    margin-right: 1em;
+    width: fit-content;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin: 8px 16px;
+    list-style: none;
+}
+
+header nav ul li a{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 1000px;
+    color: white;
+    padding: 5px;
+    border: 1px solid lightgreen;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: none;
+}
+
+/*header animation*/
+header nav ul li a:focus{
+    outline: none;
+}
+
+header nav ul li a:hover{
+    background: grey;
+    cursor: pointer;
+}
+
+header nav ul li a:before{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+}
+
+header nav ul li a:after{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}
+
+/*index*/
+.index-banner {
+    width: 100%;
+    height: 400px;
+    background-image: url('doctorstrange.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.index-banner h1{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 60px;
+    color: whitesmoke;
+    text-align: center;
+    padding-top: 1.5em;
+    text-shadow: 2px 2px 8px #111;
+}
+
+.index-banner h2{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: center;
+    padding-top: 0.5em;
+    text-shadow: 2px 2px 8px #111;
+}
+
+.index-secondbanner {
+    width: 100%;
+    height: 400px;
+    background-image: url('doctorbruce.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.index-thirdbanner {
+    width: 100%;
+    height: 400px;
+    background-image: url('doctordoom.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.index-fourthbanner {
+    width: 100%;
+    height: 400px;
+    background-image: url('doctorryan.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/*button css for index banner*/
+.index-banner button{
+    display: block;
+    margin: auto;
+    background: none;
+    color: white;
+    width: 200px;
+    height: 50px;
+    border: 1px solid white;
+    font-size: 15px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    margin-top: 2em;
+}
+
+.index-banner button:focus{
+    outline: none;
+}
+
+.index-banner button:hover{
+    background: lightgreen;
+    cursor: pointer;
+}
+
+.index-banner button:before{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+}
+
+.index-banner button:after{
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}
+
+/*footer*/
+footer{
+    width: 100%;
+    height: 180px;
+    background-color: #383838;
+}
+
+footer .footer-text{
+    font-family: 'Work Sans', sans-serif;
+    padding-left: 1em;
+    padding-top: 3em;
+    float: left;
+    color: white;
+}
+
+footer .footer-brand{
+    font-family: 'Righteous', cursive;
+    float: right;
+    color: white;
+    text-transform: uppercase;
+    padding-right: 1em;
+    padding-top: 3.5em;
+}

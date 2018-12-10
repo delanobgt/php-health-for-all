@@ -18,16 +18,19 @@
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($queryStrings['page'] === 'login') {
-            echo "belum jadi";
+            if (authenticate($_POST['email'], $_POST['password'])) {
+                redirect(path('front/index.php'));
+            } else {
+                redirect(path('front/auth_doctor.php'));
+            }
         } else if ($queryStrings['page'] === 'signup') {
             $doctorId = createDoctor($_POST['name'], $_POST['age'], $_POST['specialist'], $_POST['gender']);
-            var_dump($doctorId);
-            if ($doctorId) {
-                if (createUser($_POST['username'], $_POST['email'], $_POST['password'], 'doctor', $doctorId)) {
-                    if (authenticate($_POST['email'], $_POST['password'])) {
-                        redirect(path('front/index.php'));
-                    }
-                }
+            if ($doctorId && 
+                createUser($_POST['email'], $_POST['password'], 'doctor', $doctorId) &&
+                authenticate($_POST['email'], $_POST['password'])) {
+                    redirect(path('front/index.php'));
+            } else {
+                redirect(path('front/auth_doctor.php'));
             }
         }
     }

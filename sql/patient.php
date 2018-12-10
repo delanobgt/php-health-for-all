@@ -3,13 +3,13 @@
 
     function createPatient($name, $age, $gender) {
         global $pdo;
-        $stmt = $pdo->prepare('INSERT INTO patient(name, age, gender) VALUES (:name, :age :gender)');
+        $stmt = $pdo->prepare('INSERT INTO patient(name, age, gender) VALUES(:name, :age, :gender)');
         $success = $stmt->execute(array(
             'name' => $name,
             'age' => $age,
             'gender' => $gender
         ));
-        return $success ? $this->pdo->lastInsertId() : 0;
+        return $success ? $pdo->lastInsertId() : 0;
     }
 
     function findAllPatient() {
@@ -26,7 +26,7 @@
         return $stmt->fetch();
     }
 
-    function updatePatientById($id, $name, $age, $specialist, $gender) {
+    function updatePatientById($id, $name, $age, $gender) {
         global $pdo;
         $stmt = $pdo->prepare('UPDATE patient SET name = :name, age = :age, gender = :gender WHERE id = :id');
         return $stmt->execute(array(
