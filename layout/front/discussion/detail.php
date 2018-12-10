@@ -1,9 +1,11 @@
 <?php
     require_once __DIR__.'/../../../lib/routing.php';
     require_once __DIR__.'/../../../lib/http.php';
+    require_once __DIR__.'/../../../lib/security.php';
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -78,25 +80,34 @@
                         <?php } ?>
                     <?php } ?>
                     
-
-                    <form action="<?php echo path('front/discussion.php?page=new_comment') ?>" method="POST">
-                        <input type="hidden" name="discussion_id" value="<?php echo $discussion->id ?>"/>
-                        <input type="hidden" name="answer_id" value="<?php echo $answer->id ?>"/>
-                        Answer: <br/>
-                        <textarea name="content" rows="5" cols="33" placeholder="no description yet"></textarea><br/>
-                        <input type="submit" name="submit" value="Reply"/>
-                    </form>
+                    <?php if (!isAuthenticated()) { ?>
+                        <p><a href="<?php echo path('front/pre-login.php') ?>">Login </a>to Comment</p>
+                    <?php } else { ?>
+                        <form action="<?php echo path('front/discussion.php?page=new_comment') ?>" method="POST">
+                            <input type="hidden" name="discussion_id" value="<?php echo $discussion->id ?>"/>
+                            <input type="hidden" name="answer_id" value="<?php echo $answer->id ?>"/>
+                            Answer: <br/>
+                            <textarea name="content" rows="5" cols="33" placeholder="no description yet"></textarea><br/>
+                            <input type="submit" name="submit" value="Reply"/>
+                        </form>
+                    <?php } ?>
                 </section>
             </section>
         <?php } ?>
     </main>
 
     <br/>
-    <form action="<?php echo path('front/discussion.php?page=new_answer') ?>" method="POST">
-        <input type="hidden" name="discussion_id" value="<?php echo $discussion->id ?>"/>
-        Answer: <br/>
-        <textarea name="content" rows="5" cols="33" placeholder="no description yet"></textarea><br/>
-        <input type="submit" name="submit" value="Submit"/>
-    </form>
+
+    <?php if (!isAuthenticated()) { ?>
+        <p><a href="<?php echo path('front/pre-login.php') ?>">Login </a>to Answer</p>
+    <?php } else { ?>
+        <form action="<?php echo path('front/discussion.php?page=new_answer') ?>" method="POST">
+            <input type="hidden" name="discussion_id" value="<?php echo $discussion->id ?>"/>
+            Answer: <br/>
+            <textarea name="content" rows="5" cols="33" placeholder="no description yet"></textarea> <br/>
+            <input type="submit" name="submit" value="Submit"/>
+        </form>
+    <?php } ?>
+    
 </body>
 </html>

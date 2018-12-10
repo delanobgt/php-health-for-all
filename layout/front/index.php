@@ -23,18 +23,21 @@
 
     <main>
         <section class="index-banner">
-            <h1> Diskusi dengan Dokter! </h1>
+            <h1>
+                <?php echo isset($profile) && $profile->role === 'doctor' ? 'Jawab Pertanyaan Pasien!' : 'Diskusi dengan Dokter!'?>
+            </h1>
             <a href="<?php echo path('front/discussion.php') ?>"><button type="submit"> Diskusi di forum! </button></a>
         </section>
 
-        <!-- <section class="index-secondbanner">
-            <h1> Tanya Dokter! </h1>
-            <a href="#"> <button type="submit"> Private Chat disini! </button> </a>
-        </section> -->
-
         <section class="index-thirdbanner">
-            <h1> Cari Dokter! </h1>
-            <a href="<?php echo path('front/doctor.php') ?>"> <button type="submit"> Book apointment disini! </button> </a>
+            <h1>
+                <?php echo isset($profile) && $profile->role === 'doctor' ? 'Lihat Dokter!' : 'Cari Dokter!'?>
+            </h1>
+            <a href="<?php echo path('front/doctor.php') ?>"> 
+                <button type="submit"> 
+                    <?php echo isset($profile) && $profile->role === 'doctor' ? 'Lihat' : 'Book appointment disini!' ?>
+                </button>
+            </a>
         </section>
     </main>
 

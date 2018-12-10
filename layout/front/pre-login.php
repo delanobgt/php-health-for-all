@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__.'/../../lib/routing.php';
     require_once __DIR__.'/../../lib/http.php';
+    redirect(path('front/auth_patient.php?page=login'));
 ?>
 
 <html>

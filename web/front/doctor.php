@@ -16,7 +16,12 @@
             render('front/doctor/detail.php', array('doctor' => $doctor));
         } else {
             $doctors = findAllDoctor();
-            render('front/doctor/index.php', array('doctors' => $doctors));
+            $email = getSession('email', '');
+            $profile = getProfileByEmail($email);
+            render('front/doctor/index.php', array(
+                'doctors' => $doctors,
+                'profile' => $profile
+            ));
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         

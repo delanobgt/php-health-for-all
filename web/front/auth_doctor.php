@@ -21,7 +21,7 @@
             if (authenticate($_POST['email'], $_POST['password'])) {
                 redirect(path('front/index.php'));
             } else {
-                redirect(path('front/auth_doctor.php'));
+                redirect(path('front/auth_doctor.php?page=login'));
             }
         } else if ($queryStrings['page'] === 'signup') {
             $doctorId = createDoctor($_POST['name'], $_POST['age'], $_POST['specialist'], $_POST['gender']);
@@ -30,7 +30,7 @@
                 authenticate($_POST['email'], $_POST['password'])) {
                     redirect(path('front/index.php'));
             } else {
-                redirect(path('front/auth_doctor.php'));
+                redirect(path('front/auth_doctor.php?page=signup'));
             }
         }
     }

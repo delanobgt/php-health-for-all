@@ -19,6 +19,15 @@
         return $stmt->fetchAll();
     }
 
+    function getPatientMap() {
+        $patientMap = array();
+        $patients = findAllPatient();
+        foreach ($patients as $patient) {
+            $patientMap[$patient->id] = $patient;
+        }
+        return $patientMap;
+    }
+
     function findPatientById($id) {
         global $pdo;
         $stmt = $pdo->prepare('SELECT * FROM patient WHERE id = :id');

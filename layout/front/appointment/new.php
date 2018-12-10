@@ -15,6 +15,19 @@
     <link rel="stylesheet" href="<?php echo css('formappointment.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <style>
+    .without_ampm::-webkit-datetime-edit-ampm-field {
+        display: none;
+    }
+    input[type=time]::-webkit-clear-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance:none;
+        appearance: none;
+        margin: -10px; 
+    }
+    </style>
 </head>
 
 <body>
@@ -24,17 +37,19 @@
 
     <div class="form-wrap">
 
-        <form>
-            <h1 class="form-title">Appointment Form</h1>
+        <form action="<?php echo path('front/appointment.php?page=new') ?>" method="POST">
+            <input type="hidden" name="doctor_id" value="<?php echo $doctor_id ?>" />
+            <input type="hidden" name="patient_id" value="<?php echo $patient_id ?>" />
 
-            <label>Name</label> <input type="text" placeholder="Enter Name">
-            <label>Age</label> <input type="text" placeholder="Enter Age">
-            <label>Gender</label> <input type="text" placeholder="Enter Gender">
-            <label>Symptom</label> <input type="text" placeholder="Enter Symptom">
-            <label>Hospital</label> <input type="text" placeholder="Enter Hospital">
-            <label>Date</label> <input type="date" placeholder="">
-            <label>Time</label> <input type="time" placeholder="">
-            <input type="button" value="Make Your Appointment">
+            <h1 class="form-title">Appointment Form</h1>
+            
+            <label>Name</label> <input type="text" value="<?php echo $profile->name ?>" placeholder="Enter Name" required readonly />
+            <label>Age</label> <input type="text" value="<?php echo $profile->age ?>" placeholder="Enter Age" required readonly />
+            <label>Gender</label> <input type="text" value="<?php echo $profile->gender ?>" placeholder="Enter Gender" required readonly/>
+            <label>Symptom</label> <input type="text" name="symptom" placeholder="Enter Symptom" required>
+            <label>Date</label> <input type="date" name="date" placeholder="" required>
+            <label>Time</label> <input type="time" name="time" placeholder="" required>
+            <input type="submit" value="Make Your Appointment">
         </form>
 
     </div>

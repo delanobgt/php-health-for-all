@@ -5,16 +5,8 @@
     require_once __DIR__.'/../sql/user.php';
 
     function isAuthenticated() {
-        return hasSession('username') === true;
+        return hasSession('email') === true;
     }
-
-    function getRole() {
-        return getSession('role');
-    }
-
-    // function getName($default = '') {
-    //     return isAuthenticated() ? getSession('username') : $default;
-    // }
 
     function logout() {
         unset($_SESSION['ct']);

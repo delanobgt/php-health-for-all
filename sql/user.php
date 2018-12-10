@@ -47,6 +47,7 @@
     }
 
     function getProfileByEmail($email) {
+        if ($email === '') return NULL;
         global $pdo;
 
         $sth = $pdo->prepare('SELECT * FROM user WHERE email = :email');

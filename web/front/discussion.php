@@ -31,6 +31,7 @@
                 'userProfileMap' => getUserProfileMap()
             ));
         } else if (isset($queryStrings['page']) && $queryStrings['page'] === 'new') { 
+            if (!isAuthenticated()) redirect(path('front/pre-login.php'));
             render('front/discussion/new.php');
         } else {
             $discussions = findAllDiscussion();

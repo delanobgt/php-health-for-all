@@ -20,6 +20,15 @@
         return $stmt->fetchAll();
     }
 
+    function getDoctorMap() {
+        $doctorMap = array();
+        $doctors = findAllDoctor();
+        foreach ($doctors as $doctor) {
+            $doctorMap[$doctor->id] = $doctor;
+        }
+        return $doctorMap;
+    }
+
     function findDoctorById($id) {
         global $pdo;
         $stmt = $pdo->prepare('SELECT * FROM doctor WHERE id = :id');

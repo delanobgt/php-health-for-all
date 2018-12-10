@@ -23,7 +23,7 @@
     </header>
 
     <div class="block">
-        <h1 class="avatar"><?php echo strtoupper(substr(getSession('email'), 0, 1)) ?></h1>
+        <h1 class="avatar"><?php echo strtoupper(substr($profile->name, 0, 1)) ?></h1>
     </div>
 
     <div class="form-wrap">

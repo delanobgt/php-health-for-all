@@ -9,4 +9,10 @@
 
     render('front/index.php');
     
+    // $email = getSession('email');
+    // $profile = getProfileByEmail($email);
+    // render('front/index.php', array(
+    //     'profile' => $profile
+    // ));
+    
 ?>

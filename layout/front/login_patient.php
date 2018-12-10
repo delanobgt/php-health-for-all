@@ -29,13 +29,15 @@
 
         <form action="<?php echo path('front/auth_patient.php?page=login') ?>" method="POST">
 
-            <h1 class="form-title">Login (Patient)</h1>
+            <h1 class="form-title">Login</h1>
 
             <input type="email" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
             <input type="submit" value="Login">
 
             <h1 class="form-footer"> If you are new patient, <a href="<?php echo path('front/auth_patient.php?page=signup') ?>"> signup here.</a> </h1>
+            <br/>
+            <h1 class="form-footer"> If you are new doctor, <a href="<?php echo path('front/auth_doctor.php?page=signup') ?>"> signup here.</a> </h1>
         </form>
 
     </div>
