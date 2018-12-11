@@ -7,10 +7,11 @@
 .main {
     height: auto;
     background-color: white;
+    margin-left: 100px;
 }
 
 .chat {
-    margin-left: 100px;
+    /* margin-left: 100px; */
     margin-right: 25px;
     background-color: gainsboro;
     width: 800px;
@@ -46,6 +47,9 @@
     border-radius: 5px;
 }
 
+.isichat p {
+    margin-left: 1em;
+}
 .pict {
     width: 40px;
     height: 40px;
@@ -78,6 +82,7 @@ img {
 .comment {
     width: 85%;
     background-color: azure;
+    margin-top: 10px;
     margin-left: 70px;
     border-radius: 5px;
     clear: both;
@@ -128,4 +133,16 @@ textarea{
 button{
     display: block;
     margin-left: 5em;
+}
+
+.cobacoba {
+    margin-left: 100px;
+    padding-left: 15px;
+    background-color: gainsboro;
+    width: 810px;
+    clear: both;
+}
+input[type="submit"] {
+    margin-left: 10px;
+    margin-bottom: 10px;
 }

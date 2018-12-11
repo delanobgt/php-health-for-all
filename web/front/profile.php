@@ -2,6 +2,7 @@
     require_once __DIR__.'/../../config.php';
     require_once __DIR__.'/../../lib/http.php';
     require_once __DIR__.'/../../lib/routing.php';
+    require_once __DIR__.'/../../lib/session.php';
     require_once __DIR__.'/../../lib/layout.php';
     require_once __DIR__.'/../../lib/security.php';
     require_once __DIR__.'/../../lib/asset.php';
@@ -22,8 +23,10 @@
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($profile->role === 'doctor') {
+            addFlash('success', 'Profile updated!');
             updateDoctorById($profile->id, $_POST['name'], $_POST['age'], $_POST['specialist'], $_POST['gender'], htmlspecialchars($_POST['description']));
         } else if ($profile->role === 'patient') {
+            addFlash('success', 'Profile updated!');
             updatePatientById($profile->id, $_POST['name'], $_POST['age'], $_POST['gender']);
         }
         redirect(path('front/profile.php'));

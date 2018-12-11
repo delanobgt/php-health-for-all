@@ -7,5 +7,4 @@
     require_once __DIR__.'/sql/user.php';
 
     redirect(path('front/index.php'));
-    // var_dump(getProfileByEmail('a@a.a'));
 ?>

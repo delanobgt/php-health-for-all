@@ -12,17 +12,14 @@
     <title>Sign Up for HFA (Patient)</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo css('bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo css('signup.css') ?>">
 </head>
 
 <body>
 
     <header>
-        <nav>
-            <ul>
-                <li><a href="contact.html">Customer Help</a></li>
-            </ul>
-        </nav>
+        <?php include __DIR__.'/../flash.php'; ?>
     </header>
 
     <div class="form-wrap">
@@ -31,13 +28,13 @@
 
             <h1 class="form-title">Sign Up (Patient)</h1>
 
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <input type="password" name="confirm_password" placeholder="Confirm Password">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <!-- <input type="password" name="confirm_password" placeholder="Confirm Password"> -->
             
-            <input type="text" name="name" placeholder="Name">
-            <input type="text" name="age" placeholder="age">
-            <select name="gender">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="age" placeholder="age" required>
+            <select name="gender" required>
                 <option value="Select your gender" disabled selected>Select your gender</option>
                 <option value="F">Female</option>
                 <option value="M">Male</option>
@@ -62,7 +59,12 @@
             <h1> Health For All |</h1>
         </div>
     </footer>
-
+    <script src="<?php echo js('jquery.min.js');?>"></script>
+	<script>
+		$('.close').click(function() {
+			$('.alert').slideUp()
+		})
+	</script>
 </body>
 
 </html>

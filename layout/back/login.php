@@ -19,21 +19,17 @@
 <body>
 
     <header>
-        <!-- <?php include __DIR__.'/nav.php'; ?> -->
         <?php include __DIR__.'/../flash.php'; ?>
     </header>
 
     <div class="form-wrap">
 
-        <form action="<?php echo path('front/auth_doctor.php?page=login') ?>" method="POST">
+        <form action="<?php echo path('back/admin_auth.php?page=login') ?>" method="POST">
+            <h1 class="form-title">Login (Admin)</h1>
 
-            <h1 class="form-title">Login (Doctor)</h1>
-
-            <input type="text" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
             <input type="submit" value="Login">
-
-            <h1 class="form-footer"> If you are new doctor, <a href="<?php echo path('front/auth_doctor.php?page=signup') ?>"> signup here.</a> </h1>
         </form>
 
     </div>

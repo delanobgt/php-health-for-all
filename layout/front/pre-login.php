@@ -38,5 +38,11 @@
                 <h1> Health For All | </h1>
             </div>
         </footer>
+        <script src="<?php echo js('jquery.min.js');?>"></script>
+        <script>
+            $('.close').click(function() {
+                $('.alert').slideUp()
+            })
+        </script>
     </body>
 </html>

@@ -12,6 +12,13 @@
         return $success ? $pdo->lastInsertId() : 0;
     }
 
+    function findAllPatientComplete() {
+        global $pdo;
+        $stmt = $pdo->prepare('SELECT * FROM patient INNER JOIN user ON user.detail_id = patient.id WHERE user.role = "patient"');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     function findAllPatient() {
         global $pdo;
         $stmt = $pdo->prepare('SELECT * FROM patient');
@@ -50,5 +57,21 @@
         global $pdo;
         $stmt = $pdo->prepare('DELETE FROM patient WHERE id = :id');
         return $stmt->execute(array('id' => $id));
+    }
+
+    function deleteWholePatientById($id) {
+        global $pdo;
+        $stmt_1 = $pdo->prepare('DELETE FROM patient WHERE id = :id');
+        $stmt_2 = $pdo->prepare('DELETE FROM user WHERE detail_id = :id AND role ="patient"');
+        return $stmt_1->execute(array('id' => $id)) && $stmt_2->execute(array('id' => $id));
+    }
+
+    function setBanPatientById($id, $ban) {
+        global $pdo;
+        $stmt = $pdo->prepare('UPDATE patient SET ban = :ban WHERE id = :id');
+        return $stmt->execute(array(
+            'id' => $id,
+            'ban' => $ban
+        ));
     }
 ?>

@@ -6,8 +6,19 @@
     require_once __DIR__.'/../../lib/asset.php';
     require_once __DIR__.'/../../lib/security.php';
     require_once __DIR__.'/../../lib/session.php';
+    require_once __DIR__.'/../../sql/user.php';
 
-    render('front/index.php');
+    if (isAuthenticated()) {
+        $email = getSession('email');
+        $profile = getProfileByEmail($email);
+        if ($profile->role === 'admin') {
+            redirect(path('back/index.php'));
+        } else {
+            render('front/index.php');    
+        }
+    } else {
+        render('front/index.php');
+    }
     
     // $email = getSession('email');
     // $profile = getProfileByEmail($email);

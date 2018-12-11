@@ -5,9 +5,7 @@
         global $pdo;
         $stmt = $pdo->prepare('INSERT INTO admin(name) VALUES(:name)');
         $success = $stmt->execute(array(
-            'name' => $name,
-            'age' => $age,
-            'gender' => $gender
+            'name' => $name
         ));
         return $success ? $pdo->lastInsertId() : 0;
     }

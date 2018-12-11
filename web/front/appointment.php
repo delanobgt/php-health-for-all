@@ -3,6 +3,7 @@
     require_once __DIR__.'/../../lib/http.php';
     require_once __DIR__.'/../../lib/layout.php';
     require_once __DIR__.'/../../lib/security.php';
+    require_once __DIR__.'/../../lib/session.php';
     require_once __DIR__.'/../../lib/asset.php';
     require_once __DIR__.'/../../sql/doctor.php';
     require_once __DIR__.'/../../sql/patient.php';
@@ -53,12 +54,15 @@
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($queryStrings['page']) && $queryStrings['page'] === 'new') {
             $timestamp = $_POST['date']." ".$_POST['time'].":00";
+            addFlash('success', "New appointment created!");
             createAppointment($_POST['doctor_id'], $_POST['patient_id'], $_POST['symptom'], $timestamp);
             redirect(path('front/appointment.php'));
         } else if (isset($queryStrings['page']) && $queryStrings['page'] === 'modify') {
             if ($_POST['submit'] === 'Approve') {
+                addFlash('success', "Appointment approved!");
                 approveAppointmentById($_POST['appointment_id'], $_POST['info']);
             } else if ($_POST['submit'] === 'Delete') {
+                addFlash('success', "Appointment deleted!");
                 deleteAppointmentById($_POST['appointment_id']);
             }
             redirect(path('front/appointment.php'));

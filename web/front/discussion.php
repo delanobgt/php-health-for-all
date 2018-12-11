@@ -40,17 +40,20 @@
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($queryStrings['page']) && $queryStrings['page'] === 'new') { 
             $email = getSession('email');
+            addFlash('success', 'New discussion created!');
             createDiscussion($_POST['title'], htmlspecialchars($_POST['description']), $email);
             redirect(path('front/discussion.php'));
         } else if (isset($queryStrings['page']) && $queryStrings['page'] === 'new_answer') { 
             $email = getSession('email');
             $discussion_id = $_POST['discussion_id'];
+            addFlash('success', 'New answer created!');
             createAnswer(htmlspecialchars($_POST['content']), $discussion_id, $email);
             redirect(path("front/discussion.php?id=$discussion_id"));
         } else if (isset($queryStrings['page']) && $queryStrings['page'] === 'new_comment') { 
             $email = getSession('email');
             $discussion_id = $_POST['discussion_id'];
             $answer_id = $_POST['answer_id'];
+            addFlash('success', 'New comment created!');
             createComment(htmlspecialchars($_POST['content']), $answer_id, $email);
             redirect(path("front/discussion.php?id=$discussion_id"));
         } else {

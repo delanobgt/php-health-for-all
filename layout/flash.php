@@ -2,6 +2,7 @@
     require_once __DIR__.'/../lib/session.php';
 ?>
 <div class="container alert-container">
+    <br/>
     <?php foreach(array('danger', 'success', 'info') as $errorType): ?>
         <?php foreach (getFlash($errorType) as $error): ?>
         <div class="alert alert-<?php echo $errorType; ?>">
@@ -10,4 +11,5 @@
         </div>
         <?php endforeach; ?>
     <?php endforeach; ?>
+    <br/>
 </div>

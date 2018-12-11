@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Health For All - Edit Profile</title>
     <link rel="stylesheet" href="Bootstrap.css">
+    <link rel="stylesheet" href="<?php echo css('bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo css('editprofile.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
@@ -20,6 +21,7 @@
 <body>
     <header>
         <?php include $GLOBALS['layoutDirectory'].'front/nav.php' ?>
+        <?php include __DIR__.'/../../flash.php'; ?>
     </header>
 
     <div class="block">
@@ -62,7 +64,12 @@
             <h1> Heatlh For All | </h1>
         </div>
     </footer>
-
+    <script src="<?php echo js('jquery.min.js');?>"></script>
+	<script>
+		$('.close').click(function() {
+			$('.alert').slideUp()
+		})
+	</script>
 </body>
 
 </html>

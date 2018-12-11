@@ -9,7 +9,15 @@
             'email' => $email,
             'password' => sha1($password)
         ));
-        return $sth->rowCount() > 0;
+
+        if ($sth->rowCount() <= 0) return false;
+
+        $profile = getProfileByEmail($email);
+        if ($profile->role === 'admin' || (isset($profile->ban) && !$profile->ban) || (isset($profile->approved) && $profile->approved)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function createUser($email, $password, $role, $detail_id) {
@@ -21,6 +29,13 @@
             'role' => $role,
             'detail_id' => $detail_id
         ));
+    }
+
+    function hasUserByEmail($email) {
+        global $pdo;
+        $sth = $pdo->prepare('SELECT * FROM user WHERE email = :email');
+        $sth->execute(array('email' => $email));
+        return $sth->rowCount() > 0;
     }
 
     function findUserByEmail($email) {
