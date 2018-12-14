@@ -88,7 +88,7 @@
                             <?php } ?>
                             
                             <?php if (!isAuthenticated()) { ?>
-                                <p><a href="<?php echo path('front/pre-login.php') ?>">Login </a>to Comment</p>
+                                <p><a class="plain" href="<?php echo path('front/pre-login.php') ?>">Login </a>to Comment</p>
                             <?php } else { ?>
                                 <form action="<?php echo path('front/discussion.php?page=new_comment') ?>" method="POST">
                                     <input type="hidden" name="discussion_id" value="<?php echo $discussion->id ?>"/>
@@ -121,6 +121,8 @@
             </form>
         <?php } ?>
     </div>
+    <br/><br/>
+
     <script src="<?php echo js('jquery.min.js');?>"></script>
 	<script>
 		$('.close').click(function() {

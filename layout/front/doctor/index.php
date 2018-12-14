@@ -36,7 +36,7 @@
                 <h2> <?php echo $doctor->specialist ?> </h2>
                 <a href="<?php echo path("front/doctor.php?id=$doctor->id") ?>"> <button type="submit"> View Profile </button> </a>
                 <?php if (!isset($profile) || $profile->role === 'patient') { ?>
-                    <a href="<?php echo path("front/appointment.php?page=new&doctor_id=$doctor->id") ?>"> <button type="submit"> Book Now! </button> </a>
+                    <a href="<?php echo path("front/appointment.php?page=new&doctor_id=$doctor->id") ?>"> <button type="submit"> Make Appointment! </button> </a>
                 <?php } ?>
             </section>
         <?php } ?>

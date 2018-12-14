@@ -10,25 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Health For All - Edit Profile</title>
-    <link rel="stylesheet" href="Bootstrap.css">
+    <title>Health For All - Make Appointment</title>
     <link rel="stylesheet" href="<?php echo css('bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo css('formappointment.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-    <style>
-    .without_ampm::-webkit-datetime-edit-ampm-field {
-        display: none;
-    }
-    input[type=time]::-webkit-clear-button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -o-appearance: none;
-        -ms-appearance:none;
-        appearance: none;
-        margin: -10px; 
-    }
-    </style>
 </head>
 
 <body>
@@ -50,7 +36,7 @@
             <label>Gender</label> <input type="text" value="<?php echo $profile->gender ?>" placeholder="Enter Gender" required readonly/>
             <label>Symptom</label> <input type="text" name="symptom" placeholder="Enter Symptom" required>
             <label>Date</label> <input type="date" name="date" placeholder="" required>
-            <label>Time</label> <input type="time" name="time" placeholder="" required>
+            <label>Time (HH:MM)</label> <input pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" id="time" type="text" name="time" placeholder="HH:MM" required>
             <input type="submit" value="Make Your Appointment">
         </form>
 

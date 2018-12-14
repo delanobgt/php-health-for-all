@@ -15,11 +15,11 @@
     }
 
     function authenticate($email, $password) {
-        $isLoggedIn = loginUser($email, $password);
-        if ($isLoggedIn) {
+        $loginStatus = loginUser($email, $password);
+        if ($loginStatus) {
             setSession('email', $email);
             return true;
         }
-        return false;
+        return $loginStatus;
     }
 ?>

@@ -18,7 +18,7 @@
         ));
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_POST['submit'] === 'Delete') {
-            deleteWholeDoctorsById($_POST['doctor_id']);
+            deleteWholeDoctorById($_POST['doctor_id']);
             addFlash('success', "Doctor deleted!");
         } else if ($_POST['submit'] === 'Approve') {
             setApprovedDoctorById($_POST['doctor_id'], 1);

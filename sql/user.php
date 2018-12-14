@@ -10,13 +10,17 @@
             'password' => sha1($password)
         ));
 
-        if ($sth->rowCount() <= 0) return false;
+        if ($sth->rowCount() <= 0) return NULL;
 
         $profile = getProfileByEmail($email);
-        if ($profile->role === 'admin' || (isset($profile->ban) && !$profile->ban) || (isset($profile->approved) && $profile->approved)) {
+        if ($profile->role === 'admin') {
             return true;
-        } else {
+        } else if (isset($profile->ban) && $profile->ban) {
             return false;
+        } else if (isset($profile->approved) && !$profile->approved) {
+            return false;
+        } else {
+            return true;
         }
     }
 

@@ -19,11 +19,15 @@
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($queryStrings['page'] === 'login') {
-            if (authenticate($_POST['email'], $_POST['password'])) {
+            $authStatus = authenticate($_POST['email'], $_POST['password']);
+            if ($authStatus) {
                 addFlash('success', 'Login successfull!');
                 redirect(path('front/index.php'));
+            } else if (is_null($authStatus)) {
+                addFlash('danger', 'Account doesn\'t exist!');
+                redirect(path('front/auth_patient.php?page=login'));
             } else {
-                addFlash('danger', 'Login failed!');
+                addFlash('danger', 'Account banned/not approved!');
                 redirect(path('front/auth_patient.php?page=login'));
             }
         } else if ($queryStrings['page'] === 'signup') {

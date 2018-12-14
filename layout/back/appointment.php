@@ -25,9 +25,8 @@
         <?php include __DIR__.'/../flash.php'; ?>
     </header>
 
-    <br/><br/><br/><br/>
-    <h1>Patient List</h1>
-    <br/><br/>
+    <br/><br/><br/><br/><br/><br/>
+    <h1>Appointment List</h1>
     <main>
         <table id="table" class="display">
             <thead>

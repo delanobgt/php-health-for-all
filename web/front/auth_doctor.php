@@ -19,11 +19,15 @@
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($queryStrings['page'] === 'login') {
-            if (authenticate($_POST['email'], $_POST['password'])) {
+            $authStatus = authenticate($_POST['email'], $_POST['password']);
+            if ($authStatus) {
                 addFlash('success', 'Login successful!');
                 redirect(path('front/index.php'));
+            } else if (is_null($authStatus)) {
+                addFlash('danger', 'Account doesn\'t exist!');
+                redirect(path('front/auth_doctor.php?page=login'));
             } else {
-                addFlash('danger', 'Login failed!');
+                addFlash('danger', 'Account not approved!');
                 redirect(path('front/auth_doctor.php?page=login'));
             }
         } else if ($queryStrings['page'] === 'signup') {
@@ -35,7 +39,7 @@
             $doctorId = createDoctor($_POST['name'], $_POST['age'], $_POST['specialist'], $_POST['gender']);
             if ($doctorId && 
                 createUser($_POST['email'], $_POST['password'], 'doctor', $doctorId)) {
-                    addFlash('success', 'Signup successful!');
+                    addFlash('success', 'Signup successful!, please wait for admin\'s approval.');
                     redirect(path('front/index.php'));
             } else {
                 addFlash('danger', 'Signup failed!');

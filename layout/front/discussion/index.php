@@ -28,7 +28,7 @@
     </header>
 
     <main class="main">
-        <br/>
+        <br/><br/><br/><br/>
         <div class="newpost">
             <a href="<?php echo path('front/discussion.php?page=new') ?>">
                 <button type="button" class="btn btn-primary">

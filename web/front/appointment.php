@@ -54,9 +54,15 @@
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($queryStrings['page']) && $queryStrings['page'] === 'new') {
             $timestamp = $_POST['date']." ".$_POST['time'].":00";
-            addFlash('success', "New appointment created!");
-            createAppointment($_POST['doctor_id'], $_POST['patient_id'], $_POST['symptom'], $timestamp);
-            redirect(path('front/appointment.php'));
+            $todayDate = new Datetime();
+            if (new Datetime($timestamp) < $todayDate) {
+                addFlash('danger', "Appointment date invalid (past date)");
+                redirect(path('front/appointment.php?page=new'));
+            } else {
+                addFlash('success', "New appointment created!");
+                createAppointment($_POST['doctor_id'], $_POST['patient_id'], $_POST['symptom'], $timestamp);
+                redirect(path('front/appointment.php'));
+            }
         } else if (isset($queryStrings['page']) && $queryStrings['page'] === 'modify') {
             if ($_POST['submit'] === 'Approve') {
                 addFlash('success', "Appointment approved!");

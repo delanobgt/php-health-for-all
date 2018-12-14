@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Health For All - Home</title>
-    <link rel="stylesheet" href="<?php echo css('bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo css('home.css') ?>">
     <link rel="stylesheet" href="<?php echo css('datatable.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo css('bootstrap.min.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 </head>
@@ -25,9 +25,8 @@
         <?php include __DIR__.'/../flash.php'; ?>
     </header>
 
-    <br/><br/><br/><br/>
-    <h1>Patient List</h1>
-    <br/><br/>
+    <br/><br/><br/><br/><br/><br/>
+    <h1>Doctor List</h1>
     <main>
         <table id="table" class="display">
             <thead>

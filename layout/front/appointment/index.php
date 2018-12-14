@@ -35,6 +35,8 @@
         
         <br/><br/><br/><br/><br/><br/><br/>
 
+        *You can only delete an appointment maximum 3 days before D-Day.<br/><br/>
+
         <?php if (count($appointments) === 0) { ?>
             <p>No appointments yet!</p>
         <?php } else { ?>
@@ -46,24 +48,42 @@
                         <p>Doctor: <?php echo $doctorMap[$ap->doctor_id]->name ?></p>
                     <?php } ?>
 
-                    <p>Time: <?php echo date('d-M-Y (h:i:s)', strtotime($ap->timestamp)) ?></p>
+                    <p>Status: <?php echo $ap->approved ? 'APPROVED' : 'NOT APPROVED' ?></p>    
+
+                    <p>Time: <?php echo date('d M Y (H:i:s)', strtotime($ap->timestamp)) ?></p>
 
                     <p>Symptom: <?php echo $ap->symptom ?></p>
 
                     <?php if ($ap->approved) { ?>
                         <p>Info: <?php echo $ap->info ?></p>
-                    <?php } else { ?>
-                        <form action="<?php echo path('front/appointment.php?page=modify') ?>" method="POST">
-                            <input type="hidden" name="appointment_id" value="<?php echo $ap->id ?>"/>
-
-                            <?php if ($profile->role === 'doctor') { ?>
-                                Info: <br/>
-                                <textarea name="info" rows="5" cols="33" placeholder="no description yet"></textarea><br/>
-                                <input type="submit" name="submit" value="Approve"/>
-                            <?php } ?>
-                            <input type="submit" name="submit" value="Delete"/>
-                        </form>
                     <?php } ?>
+
+                    <form action="<?php echo path('front/appointment.php?page=modify') ?>" method="POST">
+                        <input type="hidden" name="appointment_id" value="<?php echo $ap->id ?>"/>
+                        <?php
+                            $dateNow = new Datetime((new DateTime())->format('Y-m-d')."00:00:00");
+                            $dateTs = new DateTime(substr($ap->timestamp, 0, 10)."00:00:00");
+                            $interval = $dateTs->diff($dateNow);
+                            
+                            if ($dateTs < $dateNow) {
+                                echo "<p>*Appointment expired</p>";
+                                echo '<input type="submit" name="submit" value="Delete"/>';
+                            } else {
+                                if ($profile->role === 'doctor' && !$ap->approved) {
+                                    echo '
+                                        Info: <br/>
+                                        <textarea name="info" rows="5" cols="33" placeholder="no description yet"></textarea><br/>
+                                        <input type="submit" name="submit" value="Approve"/>
+                                    ';
+                                }
+                                if ($interval->d >= 3 || !$ap->approved) {
+                                    echo '<input type="submit" name="submit" value="Delete"/>';
+                                } else {
+                                    echo "<p>*You can't cancel an appointment 3 days before D-Day</p>";
+                                }
+                            }  
+                        ?>
+                    </form>
                 </section>
                 <br/>
                 <hr/>

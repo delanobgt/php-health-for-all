@@ -1,6 +1,8 @@
 <?php 
     require_once __DIR__.'/../../lib/security.php';
     require_once __DIR__.'/../../lib/session.php'; 
+    require_once __DIR__.'/../../lib/routing.php'; 
+    require_once __DIR__.'/../../lib/http.php'; 
 ?>
 
 <a href="<?php echo path('front/index.php') ?>" class="header-brand">Health For All | - Home </a>
@@ -17,6 +19,9 @@
             if (hasSession('email')) {
                 $email = getSession('email');
                 $profile = getProfileByEmail($email);
+                if ($profile->role === 'admin') {
+                    redirect(path('back/index.php'));
+                }
                 $logoutPath = path('logout.php');
                 $profilePath = path('front/profile.php');
                 echo "

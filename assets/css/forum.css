@@ -106,7 +106,16 @@ img {
     background-color: gainsboro;
     border: 1px solid black;
     border-radius: 25px;
+}
 
+.isichat a.plain {
+    font-size: 12px !important;
+    display: inline !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+    background-color: none !important;
+    border: none !important;
+    border-radius: 0 !important;
 }
 
 .newpost{
