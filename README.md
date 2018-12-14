@@ -1,7 +1,7 @@
-INDEX PAGE URL: ADMIN PAGE URL: http://localhost:80/universitas/php-health-for-all/
+DOCUMENT_ROOT_URL: http://localhost:80/universitas/php-health-for-all/
 
 >> ADMIN
-    ADMIN PAGE URL: http://localhost:80/universitas/php-health-for-all/admin.php
+    ADMIN_PAGE_URL: DOCUMENT_ROOT_URL/admin.php
     EMAIL: admin@admin.com
     PASS: admin
 
